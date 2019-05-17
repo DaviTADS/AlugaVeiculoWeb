@@ -14,6 +14,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -26,8 +28,18 @@ import org.hibernate.validator.constraints.NotBlank;
  */
 @Entity
 @Table(name = "TB_Veiculo")
+@NamedQueries(
+        {
+            @NamedQuery(
+                    name = Veiculo.VeiculoPorTipo,
+                    query = "SELECT v FROM Veiculo v WHERE v.tipo = ?1"
+            )
+        }
+)
 public class Veiculo implements Serializable {
  
+    public static final String VeiculoPorTipo = "VeiculoPorTipo";
+    
     @Id
     @Column(name = "ID_Veiculo")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
