@@ -33,12 +33,17 @@ import org.hibernate.validator.constraints.NotBlank;
             @NamedQuery(
                     name = Veiculo.VeiculoPorTipo,
                     query = "SELECT v FROM Veiculo v WHERE v.tipo = ?1"
+            ),
+            @NamedQuery(
+                    name = Veiculo.VeiculoPorMotorista,
+                    query = "SELECT v FROM Veiculo v WHERE v.motorista IS NOT NULL"
             )
         }
 )
 public class Veiculo implements Serializable {
  
     public static final String VeiculoPorTipo = "VeiculoPorTipo";
+    public static final String VeiculoPorMotorista = "VeiculoPorMotorista";
     
     @Id
     @Column(name = "ID_Veiculo")

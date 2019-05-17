@@ -28,9 +28,8 @@ public class VeiculoBean {
 
     @PersistenceContext(name = "AlugaVeiculoWeb", type = TRANSACTION)
     protected EntityManager em;
-    
-    
-     @TransactionAttribute(SUPPORTS)
+
+    @TransactionAttribute(SUPPORTS)
     public boolean existeVeiculo(@NotNull Veiculo veiculo) {
         TypedQuery<Veiculo> query
                 = em.createNamedQuery(Veiculo.VeiculoPorTipo, Veiculo.class);
@@ -39,7 +38,7 @@ public class VeiculoBean {
     }
 
     public void persistirVeiculo(Veiculo veiculo) {
-        
+
         em.persist(veiculo);
     }
 
@@ -47,11 +46,29 @@ public class VeiculoBean {
 
         return new Veiculo();
     }
-    
+
     public void atualizaVeiculo(Veiculo veiculo) {
-        
-            em.merge(veiculo);
-            em.flush();    
+
+        em.merge(veiculo);
+        em.flush();
+    }
+
+    public Veiculo consultarPorId(@NotNull Long id) {
+
+        return em.find(Veiculo.class, id);
+    }
+
+    public List<Veiculo> consultaVeiculosComMotorista() {
+        TypedQuery<Veiculo> query = em.createNamedQuery(Veiculo.VeiculoPorMotorista, Veiculo.class);
+
+        return query.getResultList();
+    }
+
+    public List<Veiculo> consultaVeiculosPorTipo(String tipo) {
+        TypedQuery<Veiculo> query = em.createNamedQuery(Veiculo.VeiculoPorTipo, Veiculo.class);
+        query.setParameter(1, tipo);
+
+        return query.getResultList();
     }
 
 }

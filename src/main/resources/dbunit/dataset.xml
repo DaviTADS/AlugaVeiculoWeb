@@ -54,6 +54,9 @@
     <TB_Veiculo DT_ANOF="2015" TXT_MODELO="Honda Civic" TXT_FABRICANTE="Honda" NUM_CAPACIDADE="6" 
                  TXT_TIPO="Sedã" TXT_PORTE="medio" TXT_DESC="Carro sedan para pessoas de classe" ID_Motorista="8" /> 
     
+    <TB_Veiculo DT_ANOF="2011" TXT_MODELO="Chevrolet Ranger" TXT_FABRICANTE="Chevrolet" NUM_CAPACIDADE="8" 
+                 TXT_TIPO="Pick-up" TXT_PORTE="grande" TXT_DESC="Caminhonete com tração 4x4" ID_Motorista="9" /> 
+    
              
       
 </dataset>
