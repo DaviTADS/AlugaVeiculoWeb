@@ -58,12 +58,14 @@ public class VeiculoBean {
         return em.find(Veiculo.class, id);
     }
 
+    @TransactionAttribute(SUPPORTS)
     public List<Veiculo> consultaVeiculosComMotorista() {
         TypedQuery<Veiculo> query = em.createNamedQuery(Veiculo.VeiculoPorMotorista, Veiculo.class);
 
         return query.getResultList();
     }
 
+    @TransactionAttribute(SUPPORTS)
     public List<Veiculo> consultaVeiculosPorTipo(String tipo) {
         TypedQuery<Veiculo> query = em.createNamedQuery(Veiculo.VeiculoPorTipo, Veiculo.class);
         query.setParameter(1, tipo);
