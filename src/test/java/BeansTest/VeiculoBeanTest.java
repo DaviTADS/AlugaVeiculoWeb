@@ -41,7 +41,7 @@ public class VeiculoBeanTest extends Teste {
         veiculo.setTipo("Hatch");
         assertTrue(veiculobean.existeVeiculo(veiculo));
     }
-    
+     
     @Test
     public void persistiVeiculo(){
         Veiculo veiculo = veiculobean.criarVeiculo();
@@ -65,16 +65,18 @@ public class VeiculoBeanTest extends Teste {
     
     @Test
     public void atualizaVeiculo() {
-        Veiculo veiculo = veiculobean.consultarPorId(new Long(2));
-        veiculo.setCapacidade(3); //Senha válida
+        Veiculo veiculo = veiculobean.consultarPorId(new Long(1));
+        assertEquals(5,veiculo.getCapacidade());
+        
+        veiculo.setCapacidade(3); 
         veiculobean.atualizaVeiculo(veiculo);
-        veiculo= veiculobean.consultarPorId(new Long(2));
+        veiculo= veiculobean.consultarPorId(new Long(1));
         assertEquals(3, veiculo.getCapacidade());
     }
     
     @Test
     public void VeiculoPorId() {
-        assertNotNull(veiculobean.consultarPorId(new Long(2)));
+        assertNotNull(veiculobean.consultarPorId(new Long(1)));
     }
     
     @Test

@@ -29,28 +29,31 @@ public class VeiculoBean {
     @PersistenceContext(name = "AlugaVeiculoWeb", type = TRANSACTION)
     protected EntityManager em;
 
-    @TransactionAttribute(SUPPORTS)
+    
     public boolean existeVeiculo(@NotNull Veiculo veiculo) {
         TypedQuery<Veiculo> query
                 = em.createNamedQuery(Veiculo.VeiculoPorTipo, Veiculo.class);
         query.setParameter(1, veiculo.getTipo());
         return !query.getResultList().isEmpty();
     }
-
+    
+    
     public void persistirVeiculo(Veiculo veiculo) {
 
         em.persist(veiculo);
     }
-
+    
+    @TransactionAttribute(SUPPORTS)
     public Veiculo criarVeiculo() {
 
         return new Veiculo();
     }
 
-    public void atualizaVeiculo(Veiculo veiculo) {
+    public Veiculo atualizaVeiculo(Veiculo veiculo) {
 
-        em.merge(veiculo);
+        veiculo = em.merge(veiculo);
         em.flush();
+        return veiculo;
     }
 
     public Veiculo consultarPorId(@NotNull Long id) {
