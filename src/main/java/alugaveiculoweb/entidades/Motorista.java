@@ -11,6 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -25,10 +27,19 @@ import org.hibernate.validator.constraints.br.CPF;
  */
 @Entity
 @Table(name = "TB_Motorista")
+@NamedQueries(
+        {
+            @NamedQuery(
+                    name = Motorista.MotoristaComVeiculo,
+                    query = "SELECT TXT_SOBRENOME FROM TB_Motorista m INNER JOIN TB_Veiculo v ON (m.ID_Pessoa = v.ID_Motorista)"
+            )
+        }
+)
 @DiscriminatorValue(value="M")
 @PrimaryKeyJoinColumn(name="ID_Pessoa", referencedColumnName = "ID_Pessoa")
 public class Motorista extends Pessoa implements Serializable {
     
+    public static final String MotoristaComVeiculo = "MotoristaComVeiculo";
     
     @Size(max = 3, min = 1)
     @ElementCollection
