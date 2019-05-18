@@ -17,7 +17,7 @@ import org.junit.runners.Suite;
  * @author marcos
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({VeiculoBeanTest.class})
+@Suite.SuiteClasses({VeiculoBeanTest.class, AluguelBeanTest.class, MotoristaBeanTest.class})
 public class TestSuite {
 
     @BeforeClass
