@@ -5,9 +5,7 @@
  */
 package alugaveiculoweb.beans;
 
-import alugaveiculoweb.entidades.Motorista;
 import alugaveiculoweb.entidades.Veiculo;
-import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;

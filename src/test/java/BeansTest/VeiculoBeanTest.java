@@ -29,7 +29,7 @@ public class VeiculoBeanTest extends Teste {
     public void setUp() throws NamingException {
         veiculobean = (VeiculoBean) container.getContext().lookup("java:global/classes/VeiculoBean!alugaveiculoweb.beans.VeiculoBean");
     }
-
+    
     @After
     public void tearDown() {
         veiculobean = null;

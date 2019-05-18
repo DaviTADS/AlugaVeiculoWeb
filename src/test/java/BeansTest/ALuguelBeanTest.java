@@ -9,6 +9,6 @@ package BeansTest;
  *
  * @author davi
  */
-public class ALuguelBeanTest {
+public class ALuguelBeanTest extends Teste {
     
 }
