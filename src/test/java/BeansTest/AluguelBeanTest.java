@@ -10,10 +10,13 @@ import alugaveiculoweb.beans.AluguelBean;
 import alugaveiculoweb.beans.VeiculoBean;
 import alugaveiculoweb.entidades.Aluguel;
 import alugaveiculoweb.entidades.Veiculo;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 import javax.naming.NamingException;
 import org.junit.After;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -33,6 +36,17 @@ public class AluguelBeanTest extends Teste {
     @After
     public void tearDown() {
         aluguelbean = null;
+    }
+    
+    
+    @Test
+    public void existeAluguel(){
+        Aluguel aluguel = aluguelbean.criarAluguel();
+        Calendar ci = new GregorianCalendar();
+        ci.set(2019, Calendar.MAY, 01);
+        aluguel.setDatainicio(ci.getTime());
+        assertTrue(aluguelbean.existeAluguel(aluguel));
+        
     }
     
     @Test
