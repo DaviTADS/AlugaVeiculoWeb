@@ -40,6 +40,11 @@ public class ALuguelBean {
 
         return new Aluguel();
     }
+    
+    public void persistirAluguel(Aluguel aluguel) {
+
+        em.persist(aluguel);
+    }
 
     public Aluguel atualizaAluguel(Aluguel aluguel) {
 
