@@ -16,6 +16,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedNativeQueries;
 import javax.persistence.NamedNativeQuery;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -38,14 +40,35 @@ import org.hibernate.validator.constraints.NotBlank;
             )
         }
 )
+@NamedQueries(
+        {
+            @NamedQuery(
+                    name = Aluguel.AluguelPorDataInicio,
+                    query = "Select a FROM Aluguel a WHERE a.datainicio = ?1"
+            ),
+            @NamedQuery(
+                    name = Aluguel.AluguelPorPreco,
+                    query = "Select a FROM Aluguel a WHERE a.preco = ?1"
+            ),
+            @NamedQuery(
+                    name = Aluguel.AluguelPorDataFinal,
+                    query = "Select a FROM Aluguel a WHERE a.datafinal = ?1"
+            ),
+        }
+
+)
 public class Aluguel implements Serializable{
 
-@NotNull  
+    public static final String AluguelPorDataInicio = "AluguelPorDataInicio";
+    public static final String AluguelPorDataFinal = "AluguelPorDataFinal";
+    public static final String AluguelPorPreco = "AluguelPorPreco";
+    
+//@NotNull  
 @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL , optional = false)
 @JoinColumn(name = "ID_Pessoa", referencedColumnName = "ID_Pessoa")
 private Pessoa pessoa;
 
-@NotNull
+//@NotNull
 @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 @JoinTable(name = "TB_Aluguel_Veiculo", joinColumns = { 
     @JoinColumn(name = "ID_Aluguel")},

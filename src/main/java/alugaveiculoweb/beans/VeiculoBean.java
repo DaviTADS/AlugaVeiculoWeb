@@ -70,7 +70,7 @@ public class VeiculoBean {
     public List<Veiculo> consultaVeiculosPorTipo(String tipo) {
         TypedQuery<Veiculo> query = em.createNamedQuery(Veiculo.VeiculoPorTipo, Veiculo.class);
         query.setParameter(1, tipo);
-
+        
         return query.getResultList();
     }
 
