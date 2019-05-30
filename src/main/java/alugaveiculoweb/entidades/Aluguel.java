@@ -53,7 +53,7 @@ import org.hibernate.validator.constraints.NotBlank;
             @NamedQuery(
                     name = Aluguel.AluguelPorDataFinal,
                     query = "Select a FROM Aluguel a WHERE a.datafinal = ?1"
-            ),
+            )
         }
 
 )

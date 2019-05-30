@@ -70,9 +70,11 @@ public class VeiculoBeanTest extends Teste {
         
         veiculo.setCapacidade(3); 
         veiculobean.atualizaVeiculo(veiculo);
-        veiculo= veiculobean.consultarPorId(new Long(1));
+        veiculo = veiculobean.consultarPorId(new Long(1));
         assertEquals(3, veiculo.getCapacidade());
     }
+    
+    
     
     @Test
     public void VeiculoPorId() {
