@@ -34,9 +34,8 @@ import org.hibernate.validator.constraints.NotBlank;
 @NamedNativeQueries(
         {
             @NamedNativeQuery(
-                    name = "Aluguel.Pessoa",
-                    query = "SELECT a.ID_Aluguel, a.DT_INICIO, a.DT_FINAL, a.TXT_PRECO FROM TB_Aluguel a INNER JOIN TB_Pessoa p ON (a.ID_Pessoa = p.ID_Pessoa)",
-                    resultClass = Aluguel.class
+                    name = Aluguel.AluguelPorPessoa,
+                    query = "SELECT a.ID_Aluguel, a.DT_INICIO, a.DT_FINAL, a.TXT_PRECO FROM TB_Aluguel a INNER JOIN TB_Pessoa p ON (a.ID_Pessoa = p.ID_Pessoa)"                    
             )
         }
 )
@@ -62,13 +61,14 @@ public class Aluguel implements Serializable{
     public static final String AluguelPorDataInicio = "AluguelPorDataInicio";
     public static final String AluguelPorDataFinal = "AluguelPorDataFinal";
     public static final String AluguelPorPreco = "AluguelPorPreco";
+    public static final String AluguelPorPessoa = "AluguelPorPessoa";
     
-//@NotNull  
+@NotNull  
 @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL , optional = false)
 @JoinColumn(name = "ID_Pessoa", referencedColumnName = "ID_Pessoa")
 private Pessoa pessoa;
 
-//@NotNull
+@NotNull
 @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 @JoinTable(name = "TB_Aluguel_Veiculo", joinColumns = { 
     @JoinColumn(name = "ID_Aluguel")},

@@ -91,7 +91,7 @@ public class AluguelBean {
     
     public List<Aluguel> aluguelPorPessoa(){
         
-        TypedQuery<Aluguel> query = em.createNamedQuery("Aluguel.Pessoa", Aluguel.class);
+        TypedQuery<Aluguel> query = em.createNamedQuery(Aluguel.AluguelPorPessoa, Aluguel.class);
         
         return query.getResultList();
         

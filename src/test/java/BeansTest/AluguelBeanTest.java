@@ -9,8 +9,11 @@ import static BeansTest.Teste.container;
 import alugaveiculoweb.beans.AluguelBean;
 import alugaveiculoweb.beans.VeiculoBean;
 import alugaveiculoweb.entidades.Aluguel;
+import alugaveiculoweb.entidades.PessoaFisica;
 import alugaveiculoweb.entidades.Veiculo;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -29,15 +32,18 @@ import org.junit.Test;
 public class AluguelBeanTest extends Teste {
     
     private AluguelBean aluguelbean;
+    private VeiculoBean veiculobean;
     
      @Before
     public void setUp() throws NamingException {
         aluguelbean = (AluguelBean) container.getContext().lookup("java:global/classes/AluguelBean!alugaveiculoweb.beans.AluguelBean");
+        veiculobean = (VeiculoBean) container.getContext().lookup("java:global/classes/VeiculoBean!alugaveiculoweb.beans.VeiculoBean");
     }
     
     @After
     public void tearDown() {
         aluguelbean = null;
+        veiculobean = null;
     }
     
     @Test
@@ -51,6 +57,15 @@ public class AluguelBeanTest extends Teste {
         cf.set(2019, Calendar.JUNE, 26);
         aluguel.setDatafinal(cf.getTime());
         
+        List<Veiculo> veiculos = new ArrayList();
+        Veiculo veiculo = criarVeiculo();
+        veiculos.add(veiculo);
+        aluguel.setVeiculos(veiculos);
+        
+        PessoaFisica pessoaf = criarPessoaf();
+        aluguel.setPessoa(pessoaf);
+        
+   
         aluguelbean.persistirAluguel(aluguel);
         assertNotNull(aluguel.getId());
         
@@ -86,8 +101,50 @@ public class AluguelBeanTest extends Teste {
     @Test
     public void aluguelPorPessoa(){
       List<Aluguel> alugueis = aluguelbean.aluguelPorPessoa();
-        assertEquals(alugueis.size(), 3);  
+        assertEquals(alugueis.size(), 4);  
         
     }
+    
+    
+    
+    
+    
+    
+    
+    public Veiculo criarVeiculo(){
+        Veiculo veiculo = veiculobean.criarVeiculo();
+        veiculo.setAnofabricacao("2000");
+        veiculo.setCapacidade(6);
+        veiculo.setFabricante("Honda");
+        veiculo.setImagem(Byte.MIN_VALUE);
+        veiculo.setModelo("F156");
+        veiculo.setPorte("Grande");
+        veiculo.setTipo("Esportivo");
+        veiculo.setDescricao("Descrição legal para um carro");
+        List<String> placas = new ArrayList();
+        placas.add("AXM52");
+        placas.add("V5C0D3");
+        veiculo.setPlacas(placas);
+        
+        return veiculo;
+    }
+    
+    public PessoaFisica criarPessoaf(){
+        
+        PessoaFisica pessoa = new PessoaFisica();
+        String telefone = "985447213";
+        Collection<String> telefones = new ArrayList();
+        telefones.add(telefone);
+        pessoa.setNome("Anselmo");
+        pessoa.setSobrenome("Noronha");
+        pessoa.setSenha("Ab8.tryo");
+        pessoa.setTelefones(telefones);
+        pessoa.setEmail("whatever@gmail.com");
+        pessoa.setCpf("938.102.030-25");
+        pessoa.setCreditos("200");
+        
+        return pessoa;
+    }
+    
     
 }
