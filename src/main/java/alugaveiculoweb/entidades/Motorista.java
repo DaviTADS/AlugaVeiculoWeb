@@ -27,19 +27,24 @@ import org.hibernate.validator.constraints.br.CPF;
  */
 @Entity
 @Table(name = "TB_Motorista")
-//@NamedQueries(
-//        {
+@NamedQueries(
+        {
+              @NamedQuery(
+                    name = Motorista.MotoristaPorReputacao,
+                    query = "SELECT m FROM Motorista m WHERE m.reputacao = ?1"
+            ) 
 //            @NamedQuery(
 //                    name = Motorista.MotoristaComVeiculo,
 //                    query = "SELECT TXT_SOBRENOME FROM TB_Motorista m INNER JOIN TB_Veiculo v ON (m.ID_Pessoa = v.ID_Motorista)"
 //            )
-//        }
-//)
+        }
+)
 @DiscriminatorValue(value="M")
 @PrimaryKeyJoinColumn(name="ID_Pessoa", referencedColumnName = "ID_Pessoa")
 public class Motorista extends Pessoa implements Serializable {
     
     public static final String MotoristaComVeiculo = "MotoristaComVeiculo";
+    public static final String MotoristaPorReputacao = "MotoristaPorReputacao";
     
     @Size(max = 3, min = 1)
     @ElementCollection

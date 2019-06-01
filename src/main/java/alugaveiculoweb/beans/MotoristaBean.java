@@ -6,6 +6,7 @@
 package alugaveiculoweb.beans;
 
 import alugaveiculoweb.entidades.Motorista;
+import alugaveiculoweb.entidades.Veiculo;
 import java.util.List;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -31,10 +32,37 @@ public class MotoristaBean {
     @PersistenceContext(name = "AlugaVeiculoWeb", type = TRANSACTION)
     protected EntityManager em;
     
+    public boolean existeMotorista(@NotNull Motorista motorista){
+    TypedQuery<Motorista> query
+                = em.createNamedQuery(Motorista.MotoristaPorReputacao, Motorista.class);    
+        query.setParameter(1, motorista.getReputacao());
+        return !query.getResultList().isEmpty();
+    }
+    
+    public void persistirMotorista(Motorista motorista) {
+
+        em.persist(motorista);
+    }
+    
+    @TransactionAttribute(SUPPORTS)
+    public Motorista criarMotorista() {
+
+        return new Motorista();
+    }
+    
+    public Motorista atualizaMotorista(Motorista motorista) {
+
+        motorista = em.merge(motorista);
+        em.flush();
+        return motorista;
+    }
+    
     public Motorista consultarMotoristaPorId(@NotNull Long id) {
 
         return em.find(Motorista.class, id);
     }
+    
+    
      
 //     
 //    @TransactionAttribute(SUPPORTS)
