@@ -62,7 +62,7 @@ public class AluguelBean {
         query.setParameter(1, aluguel.getDatainicio());
         return !query.getResultList().isEmpty();
     }
-    
+    @TransactionAttribute(SUPPORTS)
     public List<Aluguel> aluguelPorPreco(String preco){
         TypedQuery<Aluguel> query = em.createNamedQuery(Aluguel.AluguelPorPreco, Aluguel.class);
         query.setParameter(1, preco);
@@ -70,7 +70,7 @@ public class AluguelBean {
         return query.getResultList();
     }
     
-    
+    @TransactionAttribute(SUPPORTS)
     public List<Aluguel> aluguelPorDataInicial(Date datainicio){
         
         TypedQuery<Aluguel> query = em.createNamedQuery(Aluguel.AluguelPorDataInicio, Aluguel.class);
@@ -79,7 +79,7 @@ public class AluguelBean {
         return query.getResultList();
         
     }
-    
+    @TransactionAttribute(SUPPORTS)
     public List<Aluguel> aluguelPorDataFinal(Date datafinal){
         
         TypedQuery<Aluguel> query = em.createNamedQuery(Aluguel.AluguelPorDataFinal, Aluguel.class);
@@ -88,7 +88,7 @@ public class AluguelBean {
         return query.getResultList();
         
     }
-    
+    @TransactionAttribute(SUPPORTS)
     public List<Aluguel> aluguelPorPessoa(){
         
         TypedQuery<Aluguel> query = em.createNamedQuery(Aluguel.AluguelPorPessoa, Aluguel.class);

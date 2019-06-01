@@ -36,6 +36,10 @@
     <TB_Aluguel DT_INICIO="2019-02-15" DT_FINAL="2019-03-15" TXT_PRECO="R$2600" ID_PESSOA="3" />
     
     <TB_Aluguel DT_INICIO="2019-01-03" DT_FINAL="2019-01-17" TXT_PRECO="R$3000" ID_PESSOA="1" />
+    
+    <TB_Aluguel DT_INICIO="2019-01-26" DT_FINAL="2019-02-21" TXT_PRECO="R$3000" ID_PESSOA="4" />
+    
+    <TB_Aluguel DT_INICIO="2019-03-14" DT_FINAL="2019-05-17" TXT_PRECO="R$3000" ID_PESSOA="5" />
 
 <!--    Pessoa id = 8 (motorista)-->
     <TB_Pessoa DISC_PESSOA = "M" TXT_NOME="Alejo" TXT_SENHA="D4v.ifgt" TXT_EMAIL="alejoga@gmail.com"/>
