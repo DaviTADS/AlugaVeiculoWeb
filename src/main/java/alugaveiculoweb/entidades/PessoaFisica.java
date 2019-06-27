@@ -30,6 +30,14 @@ import org.hibernate.validator.constraints.br.CPF;
             @NamedQuery(
                     name = "PessoaF.PorNome",
                     query = "SELECT f FROM PessoaFisica f WHERE f.nome LIKE :nome ORDER BY f.id"
+            ),
+            @NamedQuery(
+                    name = PessoaFisica.PessoaFporCpf,
+                    query = "SELECT f FROM PessoaFisica f WHERE f.cpf = ?1"
+            ),
+            @NamedQuery(
+                    name = PessoaFisica.consultaCreditof,
+                    query = "SELECT f FROM PessoaFisica f WHERE f.creditos = ?1"
             )
         }
 )
@@ -38,6 +46,9 @@ import org.hibernate.validator.constraints.br.CPF;
 @PrimaryKeyJoinColumn(name = "ID_Pessoa", referencedColumnName = "ID_Pessoa")
 public class PessoaFisica extends Pessoa implements Serializable {
     
+     public static final String PessoaFporCpf = "PessoaFporCpf";
+     public static final String consultaCreditof = "consultaCreditof";
+     
     @OneToMany(mappedBy = "pessoa",fetch = FetchType.LAZY,
         cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Aluguel> alugueis; 

@@ -7,6 +7,8 @@ import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
@@ -21,10 +23,27 @@ import org.hibernate.validator.constraints.br.CNPJ;
  */
 @Entity
 @Table(name = "TB_PessoaJuridica")
+
+@NamedQueries(
+        {
+            @NamedQuery(
+                    name = PessoaJuridica.PessoaJporCnpj,
+                    query = "SELECT j FROM PessoaJuridica j WHERE j.cnpj = ?1"
+            ),
+            @NamedQuery(
+                    name = PessoaJuridica.consultaCreditoj,
+                    query = "SELECT j FROM PessoaJuridica j WHERE j.creditos = ?1"
+            )
+        }
+)
+
 @DiscriminatorValue(value="J")
 @PrimaryKeyJoinColumn(name="ID_Pessoa", referencedColumnName = "ID_Pessoa")
 public class PessoaJuridica extends Pessoa implements Serializable {
     
+       public static final String PessoaJporCnpj = "PessoaJporCnpj"; 
+       public static final String consultaCreditoj = "consultaCreditoj";  
+       
     @OneToMany(mappedBy = "pessoa",fetch = FetchType.LAZY,
         cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Aluguel> alugueis; 
